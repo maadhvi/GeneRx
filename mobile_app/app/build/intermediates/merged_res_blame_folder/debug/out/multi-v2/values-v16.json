@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.generx.app-mergeDebugResources-44:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\gmaad\\.gradle\\caches\\8.14.3\\transforms\\4b86bc37395fc4be50814b39a423542c\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        }
+    ]
+}

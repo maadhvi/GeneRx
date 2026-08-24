@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GeneRx</string>
+    <string name="title_activity_main">GeneRx</string>
+    <string name="package_name">com.generx.app</string>
+    <string name="custom_url_scheme">com.generx.app</string>
+</resources>
