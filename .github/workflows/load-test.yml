@@ -1,0 +1,41 @@
+name: 1. Load Testing (Backend & API)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  load-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Artillery
+      run: npm install -g artillery
+      
+    - name: Run Load Test
+      run: |
+        echo "config:
+          target: 'http://localhost:8000'
+          phases:
+            - duration: 60
+              arrivalRate: 5
+              name: Sustained load
+        scenarios:
+          - flow:
+            - get:
+                url: '/api/health'
+        " > load-test.yml
+        artillery run load-test.yml -o report.json
+        
+    - name: Generate HTML Report
+      run: artillery report report.json
+      
+    - name: Upload Load Test Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: Load-Test-Report
+        path: report.html

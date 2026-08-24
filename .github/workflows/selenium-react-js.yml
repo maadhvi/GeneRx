@@ -1,0 +1,38 @@
+name: 3. Selenium UI Testing (React JS Web)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  selenium-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        
+    - name: Install Selenium Webdriver dependencies
+      run: npm install selenium-webdriver mocha chai mochawesome
+      
+    - name: Start React Frontend
+      run: |
+        cd frontend
+        npm install
+        npm run dev &
+        sleep 10
+        
+    - name: Run Selenium Tests (300 cases)
+      run: npx mocha "tests/web/**/*.js" --reporter mochawesome
+      
+    - name: Upload Web Test Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: Selenium-ReactJS-Report
+        path: mochawesome-report/
